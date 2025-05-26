@@ -4,9 +4,125 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/styles.css">
-  <title>Document</title>
+  <link rel="icon" type="image/png" href="./img/pokeball.png">
+  <title>Pokedex API - NestJS</title>
 </head>
 <body>
-  <h1>Hola mundo</h1>
+  <header>
+    <div class="container">
+      <h1>Pokedex API</h1>
+      <p class="subtitle">API REST construida con NestJS y MongoDB</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="info-section">
+      <h2>¿Qué es este proyecto?</h2>
+      <p>
+        Esta API proporciona acceso a una base de datos completa de Pokémon, permitiendo 
+        consultar, crear, actualizar y eliminar información sobre diferentes especies de Pokémon.
+      </p>
+      <p>
+        El proyecto está construido con NestJS, un framework progresivo de Node.js para 
+        la creación de aplicaciones del lado del servidor eficientes y escalables.
+      </p>
+    </section>
+
+    <section class="api-section">
+      <h2>Endpoints disponibles</h2>
+      <div class="endpoint-card">
+        <h3>GET /api/v2/pokemon</h3>
+        <p>Obtiene una lista paginada de todos los Pokémon disponibles.</p>
+        <div class="endpoint-example">
+          <a href="/api/v2/pokemon" target="_blank">Probar endpoint</a>
+        </div>
+      </div>
+
+      <div class="endpoint-card">
+        <h3>GET /api/v2/pokemon/:term</h3>
+        <p>Busca un Pokémon específico utilizando diferentes identificadores. El parámetro :term acepta:</p>
+        <ul>
+          <li>Nombre del Pokémon (ej: pikachu)</li>
+          <li>ID de MongoDB (ej: 507f1f77bcf86cd799439011)</li>
+          <li>Número de la Pokédex (ej: 25)</li>
+        </ul>
+        <div class="endpoint-example">
+          <a href="/api/v2/pokemon/pikachu" target="_blank">Probar con "pikachu"</a>
+        </div>
+      </div>
+
+      <div class="endpoint-card">
+        <h3>POST /api/v2/pokemon</h3>
+        <p>Crea un nuevo Pokémon en la base de datos.</p>
+        <div class="endpoint-example">
+          <p class="endpoint-note">⚠️ Requiere un cuerpo JSON con la siguiente estructura:</p>
+          <pre>
+{
+  "name": "string",
+  "no": "number"
+}</pre>
+          <p class="endpoint-note">Ejemplo:</p>
+          <pre>
+{
+  "name": "pikachu",
+  "no": 25
+}</pre>
+        </div>
+      </div>
+
+      <div class="endpoint-card">
+        <h3>PATCH /api/v2/pokemon/:term</h3>
+        <p>Actualiza información de un Pokémon existente. El parámetro :term puede ser:</p>
+        <ul>
+          <li>Nombre del Pokémon (ej: pikachu)</li>
+          <li>ID de MongoDB (ej: 507f1f77bcf86cd799439011)</li>
+          <li>Número de la Pokédex (ej: 25)</li>
+        </ul>
+        <div class="endpoint-example">
+          <p class="endpoint-note">⚠️ Este endpoint requiere un cuerpo JSON con los datos a actualizar</p>
+        </div>
+      </div>
+
+      <div class="endpoint-card">
+        <h3>DELETE /api/v2/pokemon/:term</h3>
+        <p>Elimina un Pokémon de la base de datos. El parámetro :term acepta los mismos identificadores que el endpoint PATCH.</p>
+        <div class="endpoint-example">
+          <p class="endpoint-note">⚠️ Esta acción no se puede deshacer</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seed-section">
+      <h2>Cargar datos iniciales</h2>
+      <p>Si la base de datos está vacía, puedes cargarla con información de Pokémon usando el siguiente endpoint:</p>
+      <div class="endpoint-card">
+        <h3>GET /api/v2/seed</h3>
+        <p>Carga la base de datos con información de Pokémon desde la PokeAPI.</p>
+        <div class="endpoint-example">
+          <a href="/api/v2/seed" target="_blank">Ejecutar seed</a>
+        </div>
+      </div>
+      <p class="warning">⚠️ Ejecutar este endpoint más de una vez puede causar duplicados en la base de datos.</p>
+    </section>
+
+    <section class="tech-section">
+      <h2>Tecnologías utilizadas</h2>
+      <ul class="tech-list">
+        <li>NestJS</li>
+        <li>MongoDB</li>
+        <li>Mongoose</li>
+        <li>Docker</li>
+        <li>TypeScript</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Pokedex API - Desarrollado con NestJS y MongoDB</p>
+      <p>Creado por <a href="https://github.com/gcruces95" target="_blank">@gcruces95</a></p>
+      <p>Código fuente en <a href="https://github.com/gcruces95/learning-nestjs-pokedex" target="_blank">GitHub</a></p>
+    </div>
+  </footer>
 </body>
 </html>
