@@ -3,6 +3,7 @@ import { PokemonService } from './pokemon.service';
 import { PokemonController } from './pokemon.controller';
 import { Pokemon, PokemonSchema } from './entities/pokemon.entity';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CommonModule } from 'src/common/common.module';
 
 @Module({
   controllers: [PokemonController],
@@ -14,6 +15,7 @@ import { MongooseModule } from '@nestjs/mongoose';
         schema: PokemonSchema,
       },
     ]),
+    CommonModule,
   ],
   exports: [MongooseModule],
 })
