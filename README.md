@@ -1,98 +1,152 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Pokedex NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API REST de Pokémon basada en NestJS y MongoDB. Esta aplicación proporciona endpoints para crear, leer, actualizar y eliminar información de Pokémon, así como una funcionalidad de semilla para poblar la base de datos con datos de Pokémon.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Requisitos previos
 
-## Description
+- Node.js (v18 o superior)
+- Docker y Docker Compose
+- Git
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tecnologías utilizadas
 
-## Project setup
+- NestJS
+- MongoDB
+- Mongoose
+- Docker
+- TypeScript
+
+## Instalación
+
+### 1. Clonar el repositorio
 
 ```bash
-$ yarn install
+git clone https://github.com/gcruces95/learning-nestjs-pokedex
+cd learning-nestjs-pokedex
 ```
 
-## Compile and run the project
+### 2. Instalar dependencias
 
 ```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+npm install
+# o
+yarn install
 ```
 
-## Run tests
+### 3. Configurar la base de datos MongoDB
+
+Levanta el contenedor de MongoDB usando Docker Compose:
 
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+docker-compose up -d
 ```
 
-## Deployment
+Esto iniciará un contenedor MongoDB en el puerto 27017.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Ejecución
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Desarrollo
 
 ```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
+# o
+yarn start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+La aplicación estará disponible en [http://localhost:3000/api/v2](http://localhost:3000/api/v2)
 
-## Resources
+### Producción
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+npm run build
+npm run start:prod
+# o
+yarn build
+yarn start:prod
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Seeders (Carga de datos iniciales)
 
-## Support
+Para poblar la base de datos con datos de Pokémon, puedes hacer una solicitud GET al endpoint de semilla:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+curl http://localhost:3000/api/v2/seed
+```
 
-## Stay in touch
+Alternativamente, puedes usar herramientas como Postman o simplemente acceder a la URL en tu navegador.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Recomendaciones para el Seed
 
-## License
+- **Ejecución inicial**: Ejecuta el seed inmediatamente después de iniciar la aplicación por primera vez para tener datos con los que trabajar.
+- **Base de datos limpia**: Asegúrate de que la base de datos esté vacía antes de ejecutar el seed para evitar duplicados.
+- **Monitoreo**: Si la petición responde "Seed executed" significa que la carga se realió correctamente.
+- **Una sola vez**: El seed está diseñado para ejecutarse una sola vez. Ejecutar multiples veces puede causar errores y perder la data.
+- **Tiempo de espera**: El proceso puede tardar varios segundos dependiendo de la cantidad de datos a insertar. Ten paciencia mientras se completa.
+- **Verificación**: Después de ejecutar el seed, puedes verificar que los datos se han cargado correctamente haciendo una solicitud GET a `/api/v2/pokemon`.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Endpoints de la API
+
+### Pokémon
+
+- `GET /api/v2/pokemon` - Obtener todos los Pokémon
+- `GET /api/v2/pokemon/:term` - Obtener un Pokémon por ID, nombre o número de Pokédex
+- `POST /api/v2/pokemon` - Crear un nuevo Pokémon
+- `PATCH /api/v2/pokemon/:term` - Actualizar un Pokémon
+- `DELETE /api/v2/pokemon/:id` - Eliminar un Pokémon
+
+### Paginación
+
+La API soporta paginación para el endpoint `GET /api/v2/pokemon` mediante los siguientes parámetros de consulta:
+
+- `limit`: Número de resultados por página (por defecto: 10)
+- `offset`: Número de registros a saltar (por defecto: 0)
+
+Ejemplo:
+```bash
+# Obtener 20 Pokémon, saltando los primeros 10
+GET /api/v2/pokemon?limit=20&offset=10
+```
+
+La respuesta incluirá:
+- Total de registros en la base de datos
+- Siguiente página (si existe)
+- Página anterior (si existe)
+- Lista de Pokémon para la página actual
+
+## Estructura del proyecto
+
+```
+pokedex/
+├── src/
+│   ├── common/          # Utilidades compartidas, pipes, decoradores, etc.
+│   ├── pokemon/         # Módulo de Pokémon (controlador, servicio, DTOs, entidades)
+│   ├── seed/            # Módulo para poblar la base de datos
+│   ├── app.module.ts    # Módulo principal de la aplicación
+│   └── main.ts          # Punto de entrada de la aplicación
+├── docker-compose.yaml  # Configuración de Docker Compose
+├── nest-cli.json        # Configuración de Nest CLI
+├── package.json         # Dependencias y scripts
+├── tsconfig.json        # Configuración de TypeScript
+└── README.md            # Este archivo
+```
+
+## Variables de entorno
+
+La aplicación utiliza las siguientes variables de entorno:
+
+- `PORT`: Puerto donde se ejecutará la aplicación (por defecto: 3000)
+- `MONGODB_URI`: URI de conexión a MongoDB (por defecto: mongodb://localhost:27017/nest-pokemon)
+
+## Scripts disponibles
+
+- `npm run build` - Compila la aplicación
+- `npm run start` - Inicia la aplicación en modo producción
+- `npm run start:dev` - Inicia la aplicación en modo desarrollo con recarga automática
+- `npm run start:debug` - Inicia la aplicación en modo depuración
+- `npm run lint` - Ejecuta ESLint para verificar el código
+- `npm run test` - Ejecuta pruebas unitarias
+- `npm run test:e2e` - Ejecuta pruebas end-to-end
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia UNLICENSED.
