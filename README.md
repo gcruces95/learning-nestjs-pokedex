@@ -135,17 +135,24 @@ pokedex/
 La aplicación utiliza las siguientes variables de entorno:
 
 - `PORT`: Puerto donde se ejecutará la aplicación (por defecto: 3000)
-- `MONGODB_URI`: URI de conexión a MongoDB (por defecto: mongodb://localhost:27017/nest-pokemon)
+- `MONGODB`: URI de conexión a MongoDB (por defecto: mongodb://localhost:27017/nest-pokemon)
+- `DEFAULT_LIMIT`: Número de resultados por página (por defecto: 5)
+- `NODE_ENV`: Entorno de ejecución "dev" o "prod" (por defecto: dev)
+
+### Configuración de variables de entorno
+
+1. Clona el archivo `.env.template` y renómbralo a `.env`.
+2. Configura las variables de entorno en el archivo `.env` según tus necesidades.
 
 ## Scripts disponibles
 
-- `npm run build` - Compila la aplicación
-- `npm run start` - Inicia la aplicación en modo producción
-- `npm run start:dev` - Inicia la aplicación en modo desarrollo con recarga automática
-- `npm run start:debug` - Inicia la aplicación en modo depuración
-- `npm run lint` - Ejecuta ESLint para verificar el código
-- `npm run test` - Ejecuta pruebas unitarias
-- `npm run test:e2e` - Ejecuta pruebas end-to-end
+- `yarn build` - Compila la aplicación
+- `yarn start` - Inicia la aplicación en modo producción
+- `yarn start:dev` - Inicia la aplicación en modo desarrollo con recarga automática
+- `yarn start:debug` - Inicia la aplicación en modo depuración
+- `yarn lint` - Ejecuta ESLint para verificar el código
+- `yarn test` - Ejecuta pruebas unitarias
+- `yarn test:e2e` - Ejecuta pruebas end-to-end
 
 ## Licencia
 
