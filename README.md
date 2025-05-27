@@ -35,13 +35,25 @@ yarn install
 
 ### 3. Configurar la base de datos MongoDB
 
-Levanta el contenedor de MongoDB usando Docker Compose:
+#### Entorno de desarrollo
+
+Levanta el contenedor de MongoDB usando Docker Compose para desarrollo:
 
 ```bash
-docker-compose up -d
+docker-compose -f docker-compose.dev.yaml up -d
 ```
 
 Esto iniciará un contenedor MongoDB en el puerto 27017.
+
+#### Entorno de producción
+
+Para desplegar la aplicación completa en producción:
+
+```bash
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d
+```
+
+Esto levantará tanto el contenedor de MongoDB como la aplicación NestJS en un entorno de producción.
 
 ## Ejecución
 
@@ -57,12 +69,22 @@ La aplicación estará disponible en [http://localhost:3000/api/v2](http://local
 
 ### Producción
 
+#### Ejecución manual
+
 ```bash
 npm run build
 npm run start:prod
 # o
 yarn build
 yarn start:prod
+```
+
+#### Ejecución con Docker
+
+Puedes ejecutar la aplicación completa con Docker Compose:
+
+```bash
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d
 ```
 
 ## Seeders (Carga de datos iniciales)
@@ -119,11 +141,14 @@ La respuesta incluirá:
 pokedex/
 ├── src/
 │   ├── common/          # Utilidades compartidas, pipes, decoradores, etc.
+│   ├── config/          # Configuración de variables de entorno y validación
 │   ├── pokemon/         # Módulo de Pokémon (controlador, servicio, DTOs, entidades)
 │   ├── seed/            # Módulo para poblar la base de datos
 │   ├── app.module.ts    # Módulo principal de la aplicación
 │   └── main.ts          # Punto de entrada de la aplicación
-├── docker-compose.yaml  # Configuración de Docker Compose
+├── docker-compose.dev.yaml   # Configuración de Docker Compose para desarrollo
+├── docker-compose.prod.yaml  # Configuración de Docker Compose para producción
+├── Dockerfile           # Configuración de Docker para la aplicación
 ├── nest-cli.json        # Configuración de Nest CLI
 ├── package.json         # Dependencias y scripts
 ├── tsconfig.json        # Configuración de TypeScript
@@ -154,6 +179,22 @@ La aplicación utiliza las siguientes variables de entorno:
 - `yarn test` - Ejecuta pruebas unitarias
 - `yarn test:e2e` - Ejecuta pruebas end-to-end
 
+## Despliegue con Docker
+
+### Desarrollo
+Para desarrollo local, solo se despliega la base de datos MongoDB:
+```bash
+docker-compose -f docker-compose.dev.yaml up -d
+```
+
+### Producción
+Para entornos de producción, se despliega tanto la aplicación como la base de datos:
+```bash
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d
+```
+
+La imagen Docker de la aplicación se construye utilizando un enfoque multi-etapa para optimizar el tamaño y rendimiento.
+
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia UNLICENSED.
+Este proyecto está licenciado bajo la Licencia MIT.
